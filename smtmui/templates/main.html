@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+{% load static %}
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="author" content="hank_chu@fiberlogic.com">
+    <link rel="shortcut icon" type="image/png" href="{% static 'favicon/favicon.ico' %}"/>
+    <link rel="stylesheet" href="{% static 'css/sort_bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap-4.3.1.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    <title>{{ title }}</title>
+</head>
+
+<body>
+
+<!-- <main role="main" class="container">
+    <div class="jumbotron">
+        <h1>Hello, <a id="whoami">{{ request.user }}</a></h1>
+        {% if datetime %}
+            <h1>Last Update: {{ datetime }}<br>File Name: {{ filename }}</h1>
+        {% endif %}
+        <p class="lead"></p>
+    </div>
+</main> -->
+
+<nav class="navbar navbar-dark bg-dark">
+    <div class="container" style="width: 80%">
+        <div class="navbar-header">
+            <a class="navbar-brand"><font color="white">Hello, {{ request.user }}</font></a>
+        </div>
+        <div class="nav navbar-nav navbar-right">
+            <a href='/accounts/logout' class="btn btn-outline-warning">Log Out</a>
+        </div>
+    </div>
+</nav>
+
+<br>
+
+<div class="container">
+    <canvas id="canvasA" style="width:75%;"></canvas>
+    <canvas id="canvasB" style="width:75%; display: none;"></canvas>
+    <canvas id="canvasData" style="width:75%; display: none;"></canvas>
+</div>
+
+<br>
+
+<div class="container">
+    <input type="text" id="userSearch" onkeyup="main_table()" placeholder="Search ..." class="form-control" autofocus>
+</div>
+
+<div class="container">
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" id="tt0" name="tt0" checked="checked">
+        <label class="form-check-label" for="tt0">col0</label>
+    </div>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" id="tt1" name="tt1" checked="checked">
+        <label class="form-check-label" for="tt1">col1</label>
+    </div>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" id="tt2" name="tt2" checked="checked">
+        <label class="form-check-label" for="tt2">col2</label>
+    </div>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" id="tt3" name="tt3" checked="checked">
+        <label class="form-check-label" for="tt3">col3</label>
+    </div>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" id="tt4" name="tt4" checked="checked">
+        <label class="form-check-label" for="tt4">col4</label>
+    </div>
+</div>
+
+<hr>
+
+<div class="container" id="container_table">
+    <table id="mainTable" class="table">
+        <thead class="thead-dark">
+            <tr>
+                <th class="tt0" width="20">col0</th>
+                <th class="tt1" width="20">col1</th>
+                <th class="tt2" width="35">col2</th>
+                <th class="tt3" width="5">col3</th>
+                <th class="tt4" width="20">col4</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% if data %}
+            {% for dd in data %}
+            <tr>
+                <td class="tt0">{{ dd.tt0 }}</td>
+                <td class="tt1">{{ dd.tt1 }}</td>
+                <td class="tt2">{{ dd.tt2 }}</td>
+                <td class="tt3">{{ dd.tt3 }}</td>
+                <td class="tt4">{{ dd.tt4 }}</td>
+            </tr>
+            {% endfor %}
+        {% else %}
+            <tr>
+                <td class="tt0"></td>
+                <td class="tt1"></td>
+                <td class="tt2">No Data Found.</td>
+                <td class="tt3"></td>
+                <td class="tt4"></td>
+            </tr>
+        {% endif %}
+        </tbody>
+    </table>
+</div>
+
+<div class="text-center">
+    Powered by <a href="https://www.google.com/" target="_blank">HankTw</a>
+    &copy; 2021
+</div>
+
+<script type="text/javascript" src="{% static 'js/jquery-3.4.1.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/bootstrap-4.3.1.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/jquery.tablesorter.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/chart.js-2.9.4/package/dist/Chart.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/main.js' %}"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+  <title>sys</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="shortcut icon" type="image/png" href="{% static 'favicon/favicon.ico' %}"/>
+</head>
+<body>
+  <nav class="navbar navbar-default">
+    <div class="container" style="width: 80%">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#" onClick="window.location.reload();">System H</a>
+      </div>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#" data-toggle="modal" data-target="#a_Modal">info</a></li>
+        <li><a href="#" data-toggle="modal" data-target="#b_Modal">setting</a></li>
+      </ul>
+    </div>
+  </nav>
+
+<!-- <div class="tab">
+<button class="tablinks" onclick="opentab(event, '172.18.188.1')" id="defaultOpen">172.18.188.1</button>
+<button class="tablinks" onclick="opentab(event, '172.18.188.2')">172.18.188.2</button>
+<button class="tablinks" onclick="opentab(event, '172.18.188.3')">172.18.188.3</button>
+</div>
+
+<div id="172.18.188.1" class="tabcontent">
+<h3>172.18.188.1</h3>
+<p>172.18.188.1...</p>
+</div>
+
+<div id="172.18.188.2" class="tabcontent">
+<h3>172.18.188.2</h3>
+<p>172.18.188.2...</p> 
+</div>
+
+<div id="172.18.188.3" class="tabcontent">
+<h3>172.18.188.3</h3>
+<p>172.18.188.3...</p>
+</div> -->
+
+<div class="container">
+<div class="row">
+<div class="col-md-6">
+<div class="vertical-tab" role="tabpanel">
+<!-- Nav tabs -->
+<ul class="nav nav-tabs" role="tablist">
+<li role="presentation" class="active"><a href="#Section1" aria-controls="home" role="tab" data-toggle="tab">172.18.188.1</a></li>
+<li role="presentation"><a href="#Section2" aria-controls="profile" role="tab" data-toggle="tab">172.18.188.2</a></li>
+<li role="presentation"><a href="#Section3" aria-controls="messages" role="tab" data-toggle="tab">172.18.188.3</a></li>
+</ul>
+<!-- Tab panes -->
+<div class="tab-content tabs">
+<div role="tabpanel" class="tab-pane fade in active" id="Section1">
+<h3>172.18.188.1</h3>
+<p></p>
+</div>
+<div role="tabpanel" class="tab-pane fade" id="Section2">
+<h3>172.18.188.2</h3>
+<p></p>
+</div>
+<div role="tabpanel" class="tab-pane fade" id="Section3">
+<h3>172.18.188.3</h3>
+<p></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="container">
+  <!-- Modal -->
+  <div class="modal fade" id="a_Modal" role="dialog">
+    <div class="modal-dialog">
+    <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">sys infomation</h4>
+        </div>
+        <div class="modal-body">
+          <p>
+            coming soon.
+          </p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+    <div class="modal fade" id="b_Modal" role="dialog">
+    <div class="modal-dialog">
+    <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">sys infomation</h4>
+        </div>
+        <div class="modal-body">
+          <p>
+            coming soon.
+          </p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+<script type="text/javascript" src="{% static "js/jquery-3.4.1.min.js" %}"></script>
+<script type="text/javascript" src="{% static "js/bootstrap-3.4.1.min.js" %}"></script>
+<script type="text/javascript" src="{% static "js/hw_hp.js" %}"></script>
+<link rel="stylesheet" type="text/css" href="{% static "css/bootstrap-3.4.1.min.css" %}">
+<link rel="stylesheet" type="text/css" href="{% static "css/hw_hp.css" %}">
+</html>

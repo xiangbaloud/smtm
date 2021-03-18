@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+{% load static %}
+
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="author" content="hank_chu@fiberlogic.com">
+    <link rel="shortcut icon" type="image/png" href="{% static 'favicon/favicon.ico' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap-4.3.1.min.css' %}">
+    <title>UserIndex</title>
+</head>
+
+{% if request.user.is_authenticated %}
+<body>
+
+<nav class="navbar navbar-dark bg-dark">
+    <div class="container" style="width: 80%">
+        <div class="navbar-header">
+            <a class="navbar-brand"><font color="white">Hello, {{ request.user }}</font></a>
+        </div>
+        <div class="nav navbar-nav navbar-right">
+            <a href='/accounts/logout' class="btn btn-outline-warning">Log Out</a>
+        </div>
+    </div>
+</nav>
+
+<dir class="text-center">
+    <h2>List</h2>
+</dir>
+
+    {% if request.user.username == "spud" %}
+<div class="container">
+    <div class="list-group">
+        <a target="_blank" href="/erp" class="list-group-item list-group-item-action">erp</a>
+        <a target="_blank" href="/erp-secure" class="list-group-item list-group-item-action">erp-secure</a>
+        <a target="_blank" href="/erp-secure-cost" class="list-group-item list-group-item-action">erp-secure-cost</a>
+        <a target="_blank" href="/bom" class="list-group-item list-group-item-action">bom</a>
+        <a target="_blank" href="/mib2snmp" class="list-group-item list-group-item-action">mib2snmp</a>
+    </div>
+</div>
+
+    {% elif request.user.username == "iamwggg" %}
+<div class="container">
+    <div class="list-group">
+        <a target="_blank" href="/erp" class="list-group-item list-group-item-action">erp</a>
+        <a target="_blank" href="/erp-secure" class="list-group-item list-group-item-action">erp-secure</a>
+        <a target="_blank" href="/erp-secure-cost" class="list-group-item list-group-item-action">erp-secure-cost</a>
+        <a target="_blank" href="/bom" class="list-group-item list-group-item-action">bom</a>
+        <a target="_blank" href="/mib2snmp" class="list-group-item list-group-item-action">mib2snmp</a>
+    </div>
+</div>
+
+{% elif request.user.username == "ivanwong" %}
+<div class="container">
+    <div class="list-group">
+        <a target="_blank" href="/erp" class="list-group-item list-group-item-action">erp</a>
+        <a target="_blank" href="/erp-secure" class="list-group-item list-group-item-action">erp-secure</a>
+        <a target="_blank" href="/bom" class="list-group-item list-group-item-action">bom</a>
+        <a target="_blank" href="/mib2snmp" class="list-group-item list-group-item-action">mib2snmp</a>
+    </div>
+</div>
+
+{% elif request.user.username == "bob_chen" %}
+<div class="container">
+    <div class="list-group">
+        <a target="_blank" href="/erp" class="list-group-item list-group-item-action">erp</a>
+        <a target="_blank" href="/erp-secure" class="list-group-item list-group-item-action">erp-secure</a>
+        <a target="_blank" href="/bom" class="list-group-item list-group-item-action">bom</a>
+        <a target="_blank" href="/mib2snmp" class="list-group-item list-group-item-action">mib2snmp</a>
+    </div>
+</div>
+
+    {% elif request.user.username == "swason" %}
+<div class="container">
+    <div class="list-group">
+        <a target="_blank" href="/erp" class="list-group-item list-group-item-action">erp</a>
+        <a target="_blank" href="/erp-secure" class="list-group-item list-group-item-action">erp-secure</a>
+        <a target="_blank" href="/erp-secure-cost" class="list-group-item list-group-item-action">erp-secure-cost</a>
+        <a target="_blank" href="/bom" class="list-group-item list-group-item-action">bom</a>
+        <a target="_blank" href="/mib2snmp" class="list-group-item list-group-item-action">mib2snmp</a>
+    </div>
+</div>
+
+    {% elif request.user.username == "jason" %}
+<div class="container">
+    <div class="list-group">
+        <a target="_blank" href="/erp" class="list-group-item list-group-item-action">erp</a>
+        <a target="_blank" href="/erp-secure" class="list-group-item list-group-item-action">erp-secure</a>
+        <a target="_blank" href="/erp-secure-cost" class="list-group-item list-group-item-action">erp-secure-cost</a>
+        <a target="_blank" href="/bom" class="list-group-item list-group-item-action">bom</a>
+        <a target="_blank" href="/mib2snmp" class="list-group-item list-group-item-action">mib2snmp</a>
+    </div>
+</div>
+
+    {% elif request.user.username == "webber" %}
+<div class="container">
+    <div class="list-group">
+        <a target="_blank" href="/erp" class="list-group-item list-group-item-action">erp</a>
+        <a target="_blank" href="/erp-secure" class="list-group-item list-group-item-action">erp-secure</a>
+        <a target="_blank" href="/erp-secure-cost" class="list-group-item list-group-item-action">erp-secure-cost</a>
+        <a target="_blank" href="/bom" class="list-group-item list-group-item-action">bom</a>
+        <a target="_blank" href="/mib2snmp" class="list-group-item list-group-item-action">mib2snmp</a>
+    </div>
+</div>
+
+    {% elif request.user.username == "wei" %}
+<div class="container">
+    <div class="list-group">
+        <a target="_blank" href="/erp" class="list-group-item list-group-item-action">erp</a>
+        <a target="_blank" href="/erp-secure" class="list-group-item list-group-item-action">erp-secure</a>
+        <a target="_blank" href="/bom" class="list-group-item list-group-item-action">bom</a>
+        <a target="_blank" href="/mib2snmp" class="list-group-item list-group-item-action">mib2snmp</a>
+    </div>
+</div>
+
+    {% elif request.user.username == "fcchuang" %}
+<div class="container">
+    <div class="list-group">
+        <a target="_blank" href="/erp" class="list-group-item list-group-item-action">erp</a>
+        <a target="_blank" href="/erp-secure" class="list-group-item list-group-item-action">erp-secure</a>
+        <a target="_blank" href="/bom" class="list-group-item list-group-item-action">bom</a>
+        <a target="_blank" href="/mib2snmp" class="list-group-item list-group-item-action">mib2snmp</a>
+    </div>
+</div>
+
+    {% elif request.user.username == "dr" %}
+<div class="container">
+    <div class="list-group">
+        <a target="_blank" href="/erp" class="list-group-item list-group-item-action">erp</a>
+        <a target="_blank" href="/erp-secure" class="list-group-item list-group-item-action">erp-secure</a>
+        <a target="_blank" href="/erp-secure-cost" class="list-group-item list-group-item-action">erp-secure-cost</a>
+    </div>
+</div>
+
+    {% elif request.user.username == "admin" %}
+<div class="container">
+    <div class="list-group">
+        <a target="_blank" href="/erp" class="list-group-item list-group-item-action">erp</a>
+        <a target="_blank" href="/erp-secure" class="list-group-item list-group-item-action">erp-secure</a>
+        <a target="_blank" href="/erp-secure-cost" class="list-group-item list-group-item-action">erp-secure-cost</a>
+        <a target="_blank" href="/bom" class="list-group-item list-group-item-action">bom</a>
+        <a target="_blank" href="/mib2snmp" class="list-group-item list-group-item-action">mib2snmp</a>
+    </div>
+</div>
+
+    {% else %}
+<div class="container">
+    <div class="list-group">
+        <a target="_blank" href="/erp" class="list-group-item list-group-item-action">erp</a>
+        <a target="_blank" href="/bom" class="list-group-item list-group-item-action">bom</a>
+        <!-- <a target="_blank" href="/e-bom" class="list-group-item list-group-item-action">e-bom</a> -->
+        <a target="_blank" href="/mib2snmp" class="list-group-item list-group-item-action">mib2snmp</a>
+    </div>
+</div>
+    {% endif %}
+
+<div class="text-center">
+    Powered by <a href="https://www.fiberlogic.com/" target="_blank">Fiberlogic</a>
+    &copy; 2019
+</div>
+
+</body>
+{% else %}
+<body class="text-center">
+
+<div class="container" style="width: 30%;">
+    <div class="card">
+        <div class="card-header">
+            Logged out
+        </div>
+        <div class="card-body">
+            <!-- <h5 class="card-title">Please Login</h5> -->
+            <p class="card-text">Thanks for spending some quality time with the Web site today.</p>
+            <a href='/accounts/login/' class="btn btn-primary">Return</a>
+        </div>
+        <div class="card-footer text-muted">
+            Powered by <a href="https://www.fiberlogic.com/" target="_blank">Fiberlogic</a>
+            &copy; 2019
+        </div>
+    </div>
+</div>
+
+</body>
+{% endif %}
+
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+{% load static %}
+
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="author" content="hank_chu@fiberlogic.com">
+    <link rel="shortcut icon" type="image/png" href="{% static 'favicon/favicon.ico' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap-4.3.1.min.css' %}">
+    <title>backtologin</title>
+</head>
+
+<body class="text-center">
+
+<div class="container" style="width: 50%;">
+    <div class="card">
+        <div class="card-header">
+            Hey
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">Username and Password not Accepted, Please Check</h5>
+            <p class="card-text">If you're having trouble logging, please contact Hank</p>
+            <a href='/accounts/login/' class="btn btn-primary">Return</a>
+        </div>
+        <div class="card-footer text-muted">
+            Powered by <a href="https://www.fiberlogic.com/" target="_blank">Fiberlogic</a>
+        </div>
+    </div>
+</div>
+
+</body>
+
+</html>
