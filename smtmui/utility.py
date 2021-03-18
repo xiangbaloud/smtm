@@ -102,8 +102,8 @@ def get_stock_history(date, stock_no, retry = 5):   #從www.twse.com.tw讀取資
                 else:
                     _col0.append(i[0])
                     _col1.append(i[1])
-                    _col2.append(int(i[2]))
-                    _col3.append(int(i[3]))
+                    _col2.append(int(i[2])//10000)
+                    _col3.append(int(i[3])//10000)
                     _col4.append(float(i[4]))
                     _col5.append(float(i[5]))
                     _col6.append(float(i[6]))
@@ -128,25 +128,25 @@ def get_stock_history(date, stock_no, retry = 5):   #從www.twse.com.tw讀取資
         df['成交股數'] = df['成交股數'].map('{:,}'.format)
         df['成交金額'] = df['成交金額'].map('{:,}'.format)
         df = df.head(50)
-        print(df.to_string(index = False))
+        # print(df.to_string(index = False))
+        # df = df.to_string(index = False)
+        df = df.values.tolist()
+    return df
+    # if _res_data:
+    #     _res_stat = _res_data.json()['stat']
+    # else:
+    #     print(1)
+    # if _res_stat == 'OK':
+    #     _res_date = _res_data.json()['date']
+    #     _res_title = _res_data.json()['title']
+    #     _res_fields = _res_data.json()['fields']
+    #     _res_Rdata = _res_data.json()['data']
+    #     print(_res_date)
+    #     print(_res_title)
+    #     print(_res_fields)
+    #     for i in _res_Rdata:
+    #         print(i)
+    # else:
+    #     print(1)
 
-    sys.exit()
-
-    if _res_data:
-        _res_stat = _res_data.json()['stat']
-    else:
-        print(1)
-    if _res_stat == 'OK':
-        _res_date = _res_data.json()['date']
-        _res_title = _res_data.json()['title']
-        _res_fields = _res_data.json()['fields']
-        _res_Rdata = _res_data.json()['data']
-        print(_res_date)
-        print(_res_title)
-        print(_res_fields)
-        for i in _res_Rdata:
-            print(i)
-    else:
-        print(1)
-
-get_stock_history('yolo', 'yolo')
+# get_stock_history('yolo', 'yolo')

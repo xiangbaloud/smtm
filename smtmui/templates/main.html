@@ -47,54 +47,88 @@
 <br>
 
 <div class="container">
-    <input type="text" id="userSearch" onkeyup="main_table()" placeholder="Search ..." class="form-control" autofocus>
+    {% comment %} <input type="text" id="userSearch" onkeyup="main_table()" placeholder="Search ..." class="form-control" autofocus> {% endcomment %}
+    <input type="text" id="userSearch" onkeyup="main_table()" placeholder="Search ..." class="form-control">
 </div>
+
+<br>
 
 <div class="container">
     <div class="form-check form-check-inline">
         <input class="form-check-input" type="checkbox" id="tt0" name="tt0" checked="checked">
-        <label class="form-check-label" for="tt0">col0</label>
+        <label class="form-check-label" for="tt0">證券代號</label>
     </div>
     <div class="form-check form-check-inline">
         <input class="form-check-input" type="checkbox" id="tt1" name="tt1" checked="checked">
-        <label class="form-check-label" for="tt1">col1</label>
+        <label class="form-check-label" for="tt1">證券名稱</label>
     </div>
     <div class="form-check form-check-inline">
         <input class="form-check-input" type="checkbox" id="tt2" name="tt2" checked="checked">
-        <label class="form-check-label" for="tt2">col2</label>
+        <label class="form-check-label" for="tt2">成交股數</label>
     </div>
     <div class="form-check form-check-inline">
         <input class="form-check-input" type="checkbox" id="tt3" name="tt3" checked="checked">
-        <label class="form-check-label" for="tt3">col3</label>
+        <label class="form-check-label" for="tt3">成交金額</label>
     </div>
     <div class="form-check form-check-inline">
         <input class="form-check-input" type="checkbox" id="tt4" name="tt4" checked="checked">
-        <label class="form-check-label" for="tt4">col4</label>
+        <label class="form-check-label" for="tt4">開盤價</label>
     </div>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" id="tt5" name="tt5" checked="checked">
+        <label class="form-check-label" for="tt5">最高價</label>
+    </div>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" id="tt6" name="tt6" checked="checked">
+        <label class="form-check-label" for="tt6">最低價</label>
+    </div>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" id="tt7" name="tt7" checked="checked">
+        <label class="form-check-label" for="tt7">收盤價</label>
+    </div>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" id="tt8" name="tt8" checked="checked">
+        <label class="form-check-label" for="tt8">漲跌價差</label>
+    </div>
+    {% comment %} <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" id="tt9" name="tt9" checked="checked">
+        <label class="form-check-label" for="tt9">成交筆數</label>
+    </div> {% endcomment %}
 </div>
 
 <hr>
 
 <div class="container" id="container_table">
+<div class="row justify-content-between">
     <table id="mainTable" class="table">
         <thead class="thead-dark">
             <tr>
-                <th class="tt0" width="20">col0</th>
-                <th class="tt1" width="20">col1</th>
-                <th class="tt2" width="35">col2</th>
-                <th class="tt3" width="5">col3</th>
-                <th class="tt4" width="20">col4</th>
+                <th class="tt0" width="10">證券代號</th>
+                <th class="tt1" width="10">證券名稱</th>
+                <th class="tt2" width="10">成交股數 (萬)</th>
+                <th class="tt3" width="10">成交金額 (萬)</th>
+                <th class="tt4" width="10">開盤價</th>
+                <th class="tt5" width="10">最高價</th>
+                <th class="tt6" width="10">最低價</th>
+                <th class="tt7" width="10">收盤價</th>
+                <th class="tt8" width="10">漲跌價差</th>
+                {% comment %} <th class="tt9" width="10">成交筆數</th> {% endcomment %}
             </tr>
         </thead>
         <tbody>
         {% if data %}
             {% for dd in data %}
             <tr>
-                <td class="tt0">{{ dd.tt0 }}</td>
-                <td class="tt1">{{ dd.tt1 }}</td>
-                <td class="tt2">{{ dd.tt2 }}</td>
-                <td class="tt3">{{ dd.tt3 }}</td>
-                <td class="tt4">{{ dd.tt4 }}</td>
+                <td class="tt0">{{ dd.0 }}</td>
+                <td class="tt1">{{ dd.1 }}</td>
+                <td class="tt2">{{ dd.2 }}</td>
+                <td class="tt3">{{ dd.3 }}</td>
+                <td class="tt4">{{ dd.4 }}</td>
+                <td class="tt5">{{ dd.5 }}</td>
+                <td class="tt6">{{ dd.6 }}</td>
+                <td class="tt7">{{ dd.7 }}</td>
+                <td class="tt8">{{ dd.8 }}</td>
+                {% comment %} <td class="tt9">{{ dd.9 }}</td> {% endcomment %}
             </tr>
             {% endfor %}
         {% else %}
@@ -108,6 +142,7 @@
         {% endif %}
         </tbody>
     </table>
+</div>
 </div>
 
 <div class="text-center">

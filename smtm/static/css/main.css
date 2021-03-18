@@ -9,7 +9,11 @@
     margin-bottom: 12px;
 }
 
-#erptable {
+.container {
+    max-width: 1140px;
+}
+
+#mainTable {
     border-collapse: collapse;
     width: 100%;
     table-layout: fixed;
@@ -17,29 +21,21 @@
     border: 1px;
 }
 
-#erptable {
-    border-collapse: collapse;
-    width: 100%;
-    table-layout: fixed;
-    overflow: hidden;
-    border: 1px;
-}
-
-#erptable th, #erptable td {
+#mainTable th, #mainTable td {
     text-align: center;
     padding: 12px;
     overflow-wrap: break-word;
 }
 
-#erptable tr {
+#mainTable tr {
     border-bottom: 1px solid #ddd;
 }
 
-#erptable tr.header, #erptable tr:hover {
+#mainTable tr.header, #mainTable tr:hover {
     background-color: #f1f1f1;
 }
 
-#ebomtable {
+/* #ebomtable {
     border-collapse: collapse;
     width: 100%;
     table-layout: fixed;
@@ -67,4 +63,4 @@
 
 #ebomtable tr.header, #ebomtable tr:hover {
     background-color: #f1f1f1;
-}
+} */

@@ -3,6 +3,8 @@ from django.urls import reverse
 from django.contrib import auth
 from django.http import HttpResponseRedirect, HttpResponse
 
+from .utility import *
+
 def smtm_login(request):
     if request.user.is_authenticated:
         return HttpResponseRedirect(reverse('main'))
@@ -29,6 +31,11 @@ def smtm_logout(request):
 
 def smtm_main(request):
     if request.user.is_authenticated:
-        return render(request, 'main.html', {'title': 'SMTM'})
+        x = get_stock_history('yolo', 'yolo')
+        # print(x)
+        return render(request, 'main.html', {
+            'title': 'SMTM',
+            'data': x
+        })
     else:
         return HttpResponseRedirect(reverse('login'))

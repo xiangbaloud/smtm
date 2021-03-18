@@ -1,5 +1,5 @@
 $(function() {
-    $('#erptable').tablesorter();
+    $('#mainTable').tablesorter();
 });
 
 $("input:checkbox:not(:checked)").each(function() {
@@ -83,13 +83,13 @@ const config_a = {
     data: {
         labels: [],
         datasets: [{
-            label: "Tx",
+            label: "晶圓代工",
             backgroundColor: 'rgb(105, 111, 128)',
             borderColor: 'rgb(105, 111, 128)',
             data: [],
             fill: false,
         }, {
-            label: "Rx",
+            label: "IC 設計",
             backgroundColor: 'rgb(255, 178, 0)',
             borderColor: 'rgb(255, 178, 0)',
             data: [],
