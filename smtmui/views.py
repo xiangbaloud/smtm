@@ -28,4 +28,7 @@ def smtm_logout(request):
     return HttpResponseRedirect(reverse('login'))
 
 def smtm_main(request):
-    return render(request, 'main.html', {'title': 'SMTM'})
+    if request.user.is_authenticated:
+        return render(request, 'main.html', {'title': 'SMTM'})
+    else:
+        return HttpResponseRedirect(reverse('login'))

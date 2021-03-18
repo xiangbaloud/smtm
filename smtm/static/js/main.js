@@ -122,7 +122,7 @@ const config_a = {
                 display: true,
                 scaleLabel: {
                     display: true,
-                    labelString: 'Kbps'
+                    labelString: 'Value'
                 }
             }]
         }

@@ -76,17 +76,18 @@ def get_stock_history(date, stock_no, retry = 5):   #從www.twse.com.tw讀取資
     }
     _url = "http://www.twse.com.tw/exchangeReport/STOCK_DAY_ALL?response=open_data"
     # _url = 'http://www.twse.com.tw/exchangeReport/STOCK_DAY?date=%s&stockNo=%s' % ( _date, stock_no)
-    _csv_data = '/tmp/s.date'
-    if os.path.isfile(_csv_data) is True:
-        _res_data = requests.get(_url, proxies = _proxies)
+    _s_data = '/tmp/s.date'
+    if os.path.isfile(_s_data) is True:
+        _res_data = requests.get(_url)
+        # _res_data = requests.get(_url, proxies = _proxies)
         _res_data = _res_data.text
-        with open(_csv_data, 'w') as f:
+        with open(_s_data, 'w') as f:
             f.write(_res_data)
     else:
-        with open(_csv_data, 'w') as f:
+        with open(_s_data, 'w') as f:
             f.write('')
 
-    with open(_csv_data, 'r') as f:
+    with open(_s_data, 'r') as f:
         _line = f.readlines()
         _RowDF = {}
         _col0, _col1, _col2, _col3, _col4, _col5, _col6, _col7, _col8, _col9 = [], [], [], [], [], [], [], [], [], []
@@ -147,3 +148,5 @@ def get_stock_history(date, stock_no, retry = 5):   #從www.twse.com.tw讀取資
             print(i)
     else:
         print(1)
+
+get_stock_history('yolo', 'yolo')
