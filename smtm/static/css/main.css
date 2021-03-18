@@ -1,0 +1,70 @@
+#use_search {
+    background-image: url('/static/img/searchicon.png');
+    background-position: 10px 10px;
+    background-repeat: no-repeat;
+    width: 100%;
+    font-size: 16px;
+    padding: 12px 20px 12px 40px;
+    border: 1px solid #ddd;
+    margin-bottom: 12px;
+}
+
+#erptable {
+    border-collapse: collapse;
+    width: 100%;
+    table-layout: fixed;
+    overflow: hidden;
+    border: 1px;
+}
+
+#erptable {
+    border-collapse: collapse;
+    width: 100%;
+    table-layout: fixed;
+    overflow: hidden;
+    border: 1px;
+}
+
+#erptable th, #erptable td {
+    text-align: center;
+    padding: 12px;
+    overflow-wrap: break-word;
+}
+
+#erptable tr {
+    border-bottom: 1px solid #ddd;
+}
+
+#erptable tr.header, #erptable tr:hover {
+    background-color: #f1f1f1;
+}
+
+#ebomtable {
+    border-collapse: collapse;
+    width: 100%;
+    table-layout: fixed;
+    overflow: hidden;
+    border: 1px;
+}
+
+#ebomtable {
+    border-collapse: collapse;
+    width: 100%;
+    table-layout: fixed;
+    overflow: hidden;
+    border: 1px;
+}
+
+#ebomtable th, #ebomtable td {
+    text-align: center;
+    padding: 12px;
+    overflow-wrap: break-word;
+}
+
+#ebomtable tr {
+    border-bottom: 1px solid #ddd;
+}
+
+#ebomtable tr.header, #ebomtable tr:hover {
+    background-color: #f1f1f1;
+}
