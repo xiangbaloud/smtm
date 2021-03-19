@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 import os
+import logging
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -26,7 +27,6 @@ SECRET_KEY = '^9&#!@nk$3ow#gy21@k6tqw(n&9mr6hbq%e)en!yol)zgf^ey_'
 DEBUG = True
 
 ALLOWED_HOSTS = ['192.168.31.197', '1.168.122.80']
-
 
 # Application definition
 
@@ -68,7 +68,20 @@ TEMPLATES = [
     },
 ]
 
+# Channels
 WSGI_APPLICATION = 'smtm.wsgi.application'
+# ASGI_APPLICATION = 'smtm.asgi.application'
+
+# Redis
+# CACHES = {
+#     "default": {
+#         "BACKEND": "django_redis.cache.RedisCache",
+#         "LOCATION": "redis://127.0.0.1:6379/1",
+#         "OPTIONS": {
+#             "CLIENT_CLASS": "django_redis.client.DefaultClient",
+#         }
+#     }
+# }
 
 
 # Database
@@ -134,3 +147,33 @@ STATICFILES_DIRS = (
     ("img", os.path.join(STATIC_ROOT, 'img')),
     ("fonts", os.path.join(STATIC_ROOT, 'fonts'))
 )
+
+# Logging
+# LOGGING_CONFIG = None
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'normal': {
+            'format': '{levelname} {asctime} {module} {process:d} {message}',
+            'style': '{',
+        },
+        'simple': {
+            'format': '{levelname} {message}',
+            'style': '{',
+        },
+    },
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+            'formatter': 'normal',
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['console'],
+            'level': 'INFO',
+            'propagate': False,
+        },
+    },
+}
