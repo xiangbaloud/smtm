@@ -25,7 +25,7 @@ def connect_mongo():  #連線資料庫
 def transform_date(date):   #民國轉西元
         y, m, d = date.split('/')
         return str(int(y)+1911) + '/' + m  + '/' + d
-    
+
 def transform_data(data):   #將證交所獲得資料進行資料格式轉換
     data[0] = datetime.datetime.strptime(transform_date(data[0]), '%Y/%m/%d')
     data[1] = int(data[1].replace(',', ''))#把千進位的逗點去除

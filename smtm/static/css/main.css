@@ -34,33 +34,3 @@
 #mainTable tr.header, #mainTable tr:hover {
     background-color: #f1f1f1;
 }
-
-/* #ebomtable {
-    border-collapse: collapse;
-    width: 100%;
-    table-layout: fixed;
-    overflow: hidden;
-    border: 1px;
-}
-
-#ebomtable {
-    border-collapse: collapse;
-    width: 100%;
-    table-layout: fixed;
-    overflow: hidden;
-    border: 1px;
-}
-
-#ebomtable th, #ebomtable td {
-    text-align: center;
-    padding: 12px;
-    overflow-wrap: break-word;
-}
-
-#ebomtable tr {
-    border-bottom: 1px solid #ddd;
-}
-
-#ebomtable tr.header, #ebomtable tr:hover {
-    background-color: #f1f1f1;
-} */

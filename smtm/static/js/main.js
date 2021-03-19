@@ -81,18 +81,30 @@ function main_table() {
 const config_a = {
     type: 'line',
     data: {
-        labels: [],
+        labels: ['2021/03/10', '2021/03/11', '2021/03/12', '2021/03/13', '2021/03/14', ],
         datasets: [{
             label: "晶圓代工",
             backgroundColor: 'rgb(105, 111, 128)',
             borderColor: 'rgb(105, 111, 128)',
-            data: [],
+            data: [130, 320, 133, 456, 304],
             fill: false,
         }, {
             label: "IC 設計",
             backgroundColor: 'rgb(255, 178, 0)',
             borderColor: 'rgb(255, 178, 0)',
-            data: [],
+            data: [847, 843, 493, 293, 237],
+            fill: false,
+        }, {
+            label: "航運",
+            backgroundColor: 'rgb(255, 100, 100)',
+            borderColor: 'rgb(255, 100, 100)',
+            data: [147, 222, 145, 456, 575],
+            fill: false,
+        }, {
+            label: "被動元件",
+            backgroundColor: 'rgb(100, 178, 0)',
+            borderColor: 'rgb(100, 178, 0)',
+            data: [558, 782, 652, 293, 420],
             fill: false,
         }],
     },

@@ -16,7 +16,6 @@ def smtm_login(request):
             user = auth.authenticate(username=username, password=password)
             if user is not None and user.is_active:
                 auth.login(request, user)
-                print(username, 'login success')
                 return HttpResponseRedirect(reverse('main'))
             else:
                 return HttpResponseRedirect(reverse('login'))
@@ -31,11 +30,10 @@ def smtm_logout(request):
 
 def smtm_main(request):
     if request.user.is_authenticated:
-        x = get_stock_history('yolo', 'yolo')
-        # print(x)
+        request.user = str(request.user).title()
         return render(request, 'main.html', {
             'title': 'SMTM',
-            'data': x
+            'data': get_stock_history('yolo', 'yolo')
         })
     else:
         return HttpResponseRedirect(reverse('login'))

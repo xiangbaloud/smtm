@@ -103,15 +103,15 @@
     <table id="mainTable" class="table">
         <thead class="thead-dark">
             <tr>
-                <th class="tt0" width="10">證券代號</th>
-                <th class="tt1" width="10">證券名稱</th>
+                <th class="tt0" width="5">證券代號</th>
+                <th class="tt1" width="30">證券名稱</th>
                 <th class="tt2" width="10">成交股數 (萬)</th>
                 <th class="tt3" width="10">成交金額 (萬)</th>
                 <th class="tt4" width="10">開盤價</th>
                 <th class="tt5" width="10">最高價</th>
                 <th class="tt6" width="10">最低價</th>
                 <th class="tt7" width="10">收盤價</th>
-                <th class="tt8" width="10">漲跌價差</th>
+                <th class="tt8" width="5">漲跌價差</th>
                 {% comment %} <th class="tt9" width="10">成交筆數</th> {% endcomment %}
             </tr>
         </thead>
@@ -127,7 +127,13 @@
                 <td class="tt5">{{ dd.5 }}</td>
                 <td class="tt6">{{ dd.6 }}</td>
                 <td class="tt7">{{ dd.7 }}</td>
-                <td class="tt8">{{ dd.8 }}</td>
+                {% if dd.8 > 0 %}
+                    <td class="tt8"><font color="red">{{ dd.8 }}</font></td>
+                {% elif dd.8 < 0 %}
+                    <td class="tt8"><font color="green">{{ dd.8 }}</font></td>
+                {% else %}
+                    <td class="tt8">{{ dd.8 }}</td>
+                {% endif %}
                 {% comment %} <td class="tt9">{{ dd.9 }}</td> {% endcomment %}
             </tr>
             {% endfor %}
