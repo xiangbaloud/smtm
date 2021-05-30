@@ -10,6 +10,7 @@ import time
 # import pymongo
 import sys
 import os
+import sqlite3
 
 MONGO_HOST = 'localhost'
 MONGO_DB = 'TwStock'
@@ -65,10 +66,10 @@ def fetch_data(year: int, month: int, stockno):  #擷取從year-month開始到�
                 element={'date':item[0], 'stockno':stockno, 'shares':item[1], 'amount':item[2], 'open':item[3], 'close':item[4], 
                      'high':item[5], 'low':item[6], 'diff':item[7], 'turnover':item[8]};  #製作MongoDB的插入元素
                 print(element)
-                collection.insert_one(element)  #插入元素到MongoDB
+                collection.insert_one(element)
         time.sleep(10)  #延遲5秒，證交所會根據IP進行流量統計，流量過大會斷線
 
-def get_stock_history(date, stock_no, retry = 5):   #從www.twse.com.tw讀取資料
+def get_stock_history(date, stock_no, retry = 5):
     _date = datetime.date.today().strftime("%Y%m%d")
     _proxies = {
         'http': 'http://192.168.0.150:8080',
@@ -128,7 +129,6 @@ def get_stock_history(date, stock_no, retry = 5):   #從www.twse.com.tw讀取資
         df['成交股數'] = df['成交股數'].map('{:,}'.format)
         df['成交金額'] = df['成交金額'].map('{:,}'.format)
         df = df.head(50)
-        # print(df.to_string(index = False))
         # df = df.to_string(index = False)
         df = df.values.tolist()
     return df
@@ -150,3 +150,36 @@ def get_stock_history(date, stock_no, retry = 5):   #從www.twse.com.tw讀取資
     #     print(1)
 
 # get_stock_history('yolo', 'yolo')
+
+def create_connection(db_file):
+    """ create a database connection to the SQLite database
+        specified by the db_file
+    :param db_file: database file
+    :return: Connection object or None
+    """
+    conn = None
+    try:
+        conn = sqlite3.connect(db_file)
+    except Error as e:
+        print(e)
+
+    return conn
+
+def select_all_tasks(conn):
+    """
+    Query all rows in the tasks table
+    :param conn: the Connection object
+    :return:
+    """
+    _date =  datetime.date.today().strftime("%Y%m%d")
+    _table = 'stock_data_' + _date
+    cur = conn.cursor()
+    cur.execute("SELECT * FROM " + _table)
+
+    rows = cur.fetchall()
+    lst_data = []
+
+    for row in rows:
+        lst_data.append(list(row))
+
+    return lst_data

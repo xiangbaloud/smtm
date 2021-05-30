@@ -1,0 +1,158 @@
+#!/usr/bin/env python3
+
+import requests
+import datetime
+import os
+import sqlite3
+import pandas as pd
+
+def get_stock_data():
+    _date = datetime.date.today().strftime("%Y%m%d")
+    _proxies = {
+        'http': 'http://192.168.0.150:8080',
+        'https': 'http://192.168.0.150:8080',
+    }
+    _url = "http://www.twse.com.tw/exchangeReport/STOCK_DAY_ALL?response=open_data"
+    _srcdata_path = 'srcdata'
+    _srcdata = _srcdata_path + '/' + _date
+    _lst_alldata = []
+
+    if os.path.isfile(_srcdata) == False:
+        _res_data = requests.get(_url)
+        with open(_srcdata, 'w') as f_in:
+            f_in.write(_res_data.text)
+
+    with open(_srcdata, 'r') as f_out:
+        _line = f_out.readlines()
+        _RowDF = {}
+        _col0, _col1, _col2, _col3, _col4, _col5, _col6, _col7, _col8, _col9 = [], [], [], [], [], [], [], [], [], []
+        for i in _line:
+            i = i.rstrip()
+            i = i.strip('"')
+            i = i.replace('","', ',')
+            i = i.split(',')
+            if len(i) == 10:
+                if i[0] == '證券代號':
+                    _lst_stock_key = i
+                elif i[4] == '' or i[5] == '':
+                    pass
+                else:
+                    _col0.append(i[0])
+                    _col1.append(i[1])
+                    _col2.append(int(i[2])//10000)
+                    _col3.append(int(i[3])//10000)
+                    _col4.append(float(i[4]))
+                    _col5.append(float(i[5]))
+                    _col6.append(float(i[6]))
+                    _col7.append(float(i[7]))
+                    _col8.append(float(i[8]))
+                    _col9.append(int(i[9]))
+            else:
+                continue
+        _RowDF['證券代號'] = _col0
+        _RowDF['證券名稱'] = _col1
+        _RowDF['成交股數'] = _col2
+        _RowDF['成交金額'] = _col3
+        _RowDF['開盤價'] = _col4
+        _RowDF['最高價'] = _col5
+        _RowDF['最低價'] = _col6
+        _RowDF['收盤價'] = _col7
+        _RowDF['漲跌價差'] = _col8
+        _RowDF['成交筆數'] = _col9
+        pd.set_option('display.max_rows', 100)
+        df = pd.DataFrame(_RowDF)
+        df = df.sort_values(by = ['成交金額'], ascending = False)
+        df['成交股數'] = df['成交股數'].map('{:,}'.format)
+        df['成交金額'] = df['成交金額'].map('{:,}'.format)
+        df = df.head(100)
+        df = df.values.tolist()
+
+    return df
+
+def create_connection(db_file):
+    conn = None
+    try:
+        conn = sqlite3.connect(db_file)
+    except Error as e:
+        print(e)
+
+    return conn
+
+def create_table(conn, create_table_sql):
+    try:
+        c = conn.cursor()
+        c.execute(create_table_sql)
+    except Exception as e:
+        print(e)
+
+def write_to_db(db_file, _date = datetime.date.today().strftime("%Y%m%d")):
+    _database = db_file
+    sql_create_rules_table = """ CREATE TABLE IF NOT EXISTS rules (
+                                        id integer PRIMARY KEY,
+                                        name text NOT NULL,
+                                        begin_date text,
+                                        end_date text
+                                    ); """
+
+    sql_create_data_table = """ CREATE TABLE IF NOT EXISTS  stock_data_""" + _date + """(
+                                    id integer PRIMARY KEY,
+                                    SecurityCode text NOT NULL,
+                                    SecurityName text NOT NULL,
+                                    TradingVolume text NOT NULL,
+                                    TransactionAmount text NOT NULL,
+                                    OpeningPrice text NOT NULL,
+                                    HighestPrice text NOT NULL,
+                                    LowestPrice text NOT NULL,
+                                    ClosingPrice text NOT NULL,
+                                    PriceDifference text NOT NULL,
+                                    NumberofTransactions text NOT NULL,
+                                    FOREIGN KEY (id) REFERENCES rules (id)
+                                ); """    
+
+    lst_data = get_stock_data()
+    # create a database connection
+    conn = create_connection(_database)
+
+    # create tables
+    if conn is not None:
+        create_table(conn, sql_create_rules_table)
+        create_table(conn, sql_create_data_table)
+    else:
+        print("Error! cannot create the database connection.")
+
+    # insert data
+    with conn:
+        c = 0
+        for i in lst_data:
+            _data = tuple(i)
+            insert_table(conn, 'stock', _data)
+
+    conn.close()
+
+def insert_table(conn, _table, _data, _date = datetime.date.today().strftime("%Y%m%d")):
+    if _table == 'stock':
+        sql_info = ''' INSERT INTO stock_data_''' + _date + ''' (
+            SecurityCode,
+            SecurityName,
+            TradingVolume,
+            TransactionAmount,
+            OpeningPrice,
+            HighestPrice,
+            LowestPrice,
+            ClosingPrice,
+            PriceDifference,
+            NumberofTransactions) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?) '''
+    elif _table == 'mem':
+        sql_info = ''' INSERT INTO data (name, priority, status_id, rule_id, total, available, used, begin_date, end_date) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?) '''
+    elif _table == 'tra':
+        sql_info = ''' INSERT INTO traffic_statistics (name, priority, status_id, rule_id, TX_packets, RX_packets, TX_bytes, RX_bytes, begin_date, end_date) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?) '''
+    else:
+        pass
+
+    cur = conn.cursor()
+    cur.execute(sql_info, _data)
+    return cur.lastrowid
+
+if __name__ == '__main__':
+    write_to_db(db_file='data.db')
+

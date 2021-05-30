@@ -26,7 +26,7 @@ SECRET_KEY = '^9&#!@nk$3ow#gy21@k6tqw(n&9mr6hbq%e)en!yol)zgf^ey_'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['192.168.31.197', '1.168.122.80']
+ALLOWED_HOSTS = ['192.168.31.197']
 
 # Application definition
 
@@ -129,8 +129,7 @@ LANGUAGE_CODE = 'en-us'
 TIME_ZONE = 'Asia/Taipei'
 USE_I18N = True
 USE_L10N = True
-USE_TZ = True
-
+USE_TZ = False
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
@@ -146,6 +145,7 @@ STATICFILES_DIRS = (
     ("vendor", os.path.join(STATIC_ROOT, 'vendor')),
     ("css", os.path.join(STATIC_ROOT, 'css')),
     ("img", os.path.join(STATIC_ROOT, 'img')),
+    ("images", os.path.join(STATIC_ROOT, 'images')),
     ("fonts", os.path.join(STATIC_ROOT, 'fonts'))
 )
 

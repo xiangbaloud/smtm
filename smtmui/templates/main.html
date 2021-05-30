@@ -5,33 +5,45 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="author" content="hank_chu@fiberlogic.com">
+    <meta name="author" content="xiangbaloud">
     <link rel="shortcut icon" type="image/png" href="{% static 'favicon/favicon.ico' %}"/>
-    <link rel="stylesheet" href="{% static 'css/sort_bootstrap.css' %}">
     <link rel="stylesheet" href="{% static 'css/bootstrap-4.3.1.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap-datetimepicker.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
     <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    <link rel="stylesheet" href="{% static 'css/jquery.dataTables.min.css' %}">
     <title>{{ title }}</title>
 </head>
 
 <body>
 
-<!-- <main role="main" class="container">
-    <div class="jumbotron">
-        <h1>Hello, <a id="whoami">{{ request.user }}</a></h1>
-        {% if datetime %}
-            <h1>Last Update: {{ datetime }}<br>File Name: {{ filename }}</h1>
-        {% endif %}
-        <p class="lead"></p>
-    </div>
-</main> -->
-
-<nav class="navbar navbar-dark bg-dark">
-    <div class="container" style="width: 80%">
-        <div class="navbar-header">
-            <a class="navbar-brand"><font color="white">Hello, {{ request.user }}</font></a>
-        </div>
-        <div class="nav navbar-nav navbar-right">
-            <a href='/accounts/logout' class="btn btn-outline-warning">Log Out</a>
+<nav class="navbar navbar-expand-md navbar-dark bg-dark">
+    <div class="container">
+        <a class="navbar-brand" href="">{{ title }}</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    {% comment %} <a class="nav-link" target="_blank" href="http://172.18.30.76/">Results History</a> {% endcomment %}
+                    <a class="nav-link" href="#"></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#"></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#"></a>
+                </li>
+            </ul>
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link text-capitalize" id="username">hello, {{ request.user }}</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link btn btn-outline-warning text-white" href="/accounts/logout">Log Out</a>
+                </li>
+            </ul>
         </div>
     </div>
 </nav>
@@ -46,121 +58,20 @@
 
 <br>
 
-<div class="container">
-    {% comment %} <input type="text" id="userSearch" onkeyup="main_table()" placeholder="Search ..." class="form-control" autofocus> {% endcomment %}
-    <input type="text" id="userSearch" onkeyup="main_table()" placeholder="Search ..." class="form-control">
-</div>
-
-<br>
-
-<div class="container">
-    <div class="form-check form-check-inline">
-        <input class="form-check-input" type="checkbox" id="tt0" name="tt0" checked="checked">
-        <label class="form-check-label" for="tt0">證券代號</label>
-    </div>
-    <div class="form-check form-check-inline">
-        <input class="form-check-input" type="checkbox" id="tt1" name="tt1" checked="checked">
-        <label class="form-check-label" for="tt1">證券名稱</label>
-    </div>
-    <div class="form-check form-check-inline">
-        <input class="form-check-input" type="checkbox" id="tt2" name="tt2" checked="checked">
-        <label class="form-check-label" for="tt2">成交股數</label>
-    </div>
-    <div class="form-check form-check-inline">
-        <input class="form-check-input" type="checkbox" id="tt3" name="tt3" checked="checked">
-        <label class="form-check-label" for="tt3">成交金額</label>
-    </div>
-    <div class="form-check form-check-inline">
-        <input class="form-check-input" type="checkbox" id="tt4" name="tt4" checked="checked">
-        <label class="form-check-label" for="tt4">開盤價</label>
-    </div>
-    <div class="form-check form-check-inline">
-        <input class="form-check-input" type="checkbox" id="tt5" name="tt5" checked="checked">
-        <label class="form-check-label" for="tt5">最高價</label>
-    </div>
-    <div class="form-check form-check-inline">
-        <input class="form-check-input" type="checkbox" id="tt6" name="tt6" checked="checked">
-        <label class="form-check-label" for="tt6">最低價</label>
-    </div>
-    <div class="form-check form-check-inline">
-        <input class="form-check-input" type="checkbox" id="tt7" name="tt7" checked="checked">
-        <label class="form-check-label" for="tt7">收盤價</label>
-    </div>
-    <div class="form-check form-check-inline">
-        <input class="form-check-input" type="checkbox" id="tt8" name="tt8" checked="checked">
-        <label class="form-check-label" for="tt8">漲跌價差</label>
-    </div>
-    {% comment %} <div class="form-check form-check-inline">
-        <input class="form-check-input" type="checkbox" id="tt9" name="tt9" checked="checked">
-        <label class="form-check-label" for="tt9">成交筆數</label>
-    </div> {% endcomment %}
-</div>
-
-<hr>
-
-<div class="container" id="container_table">
-<div class="row justify-content-between">
-    <table id="mainTable" class="table">
-        <thead class="thead-dark">
-            <tr>
-                <th class="tt0" width="5">證券代號</th>
-                <th class="tt1" width="30">證券名稱</th>
-                <th class="tt2" width="10">成交股數 (萬)</th>
-                <th class="tt3" width="10">成交金額 (萬)</th>
-                <th class="tt4" width="10">開盤價</th>
-                <th class="tt5" width="10">最高價</th>
-                <th class="tt6" width="10">最低價</th>
-                <th class="tt7" width="10">收盤價</th>
-                <th class="tt8" width="5">漲跌價差</th>
-                {% comment %} <th class="tt9" width="10">成交筆數</th> {% endcomment %}
-            </tr>
-        </thead>
-        <tbody>
-        {% if data %}
-            {% for dd in data %}
-            <tr>
-                <td class="tt0">{{ dd.0 }}</td>
-                <td class="tt1">{{ dd.1 }}</td>
-                <td class="tt2">{{ dd.2 }}</td>
-                <td class="tt3">{{ dd.3 }}</td>
-                <td class="tt4">{{ dd.4 }}</td>
-                <td class="tt5">{{ dd.5 }}</td>
-                <td class="tt6">{{ dd.6 }}</td>
-                <td class="tt7">{{ dd.7 }}</td>
-                {% if dd.8 > 0 %}
-                    <td class="tt8"><font color="red">{{ dd.8 }}</font></td>
-                {% elif dd.8 < 0 %}
-                    <td class="tt8"><font color="green">{{ dd.8 }}</font></td>
-                {% else %}
-                    <td class="tt8">{{ dd.8 }}</td>
-                {% endif %}
-                {% comment %} <td class="tt9">{{ dd.9 }}</td> {% endcomment %}
-            </tr>
-            {% endfor %}
-        {% else %}
-            <tr>
-                <td class="tt0"></td>
-                <td class="tt1"></td>
-                <td class="tt2">No Data Found.</td>
-                <td class="tt3"></td>
-                <td class="tt4"></td>
-            </tr>
-        {% endif %}
-        </tbody>
-    </table>
-</div>
-</div>
+<table id="mainTable" class="mainTable"></table>
 
 <div class="text-center">
     Powered by <a href="https://www.google.com/" target="_blank">HankTw</a>
     &copy; 2021
 </div>
 
-<script type="text/javascript" src="{% static 'js/jquery-3.4.1.min.js' %}"></script>
-<script type="text/javascript" src="{% static 'js/bootstrap-4.3.1.min.js' %}"></script>
-<script type="text/javascript" src="{% static 'js/jquery.tablesorter.js' %}"></script>
-<script type="text/javascript" src="{% static 'js/chart.js-2.9.4/package/dist/Chart.js' %}"></script>
-<script type="text/javascript" src="{% static 'js/main.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/jquery-3.4.1.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/moment.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/chart.js-2.9.4/package/dist/Chart.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/datatables.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/bootstrap-4.3.1.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/bootstrap-datetimepicker.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/main.js' %}"></script>
 
 </body>
 

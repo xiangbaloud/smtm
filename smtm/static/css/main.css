@@ -1,18 +1,3 @@
-#use_search {
-    background-image: url('/static/img/searchicon.png');
-    background-position: 10px 10px;
-    background-repeat: no-repeat;
-    width: 100%;
-    font-size: 16px;
-    padding: 12px 20px 12px 40px;
-    border: 1px solid #ddd;
-    margin-bottom: 12px;
-}
-
-.container {
-    max-width: 1140px;
-}
-
 #mainTable {
     border-collapse: collapse;
     width: 100%;
@@ -23,7 +8,7 @@
 
 #mainTable th, #mainTable td {
     text-align: center;
-    padding: 12px;
+    /* padding: 6px; */
     overflow-wrap: break-word;
 }
 
@@ -33,4 +18,17 @@
 
 #mainTable tr.header, #mainTable tr:hover {
     background-color: #f1f1f1;
+}
+
+#mainTable .hidden_row {
+    display: none;
+}
+
+#mainTable_wrapper {
+    width: 95%;
+    margin: 0 auto;
+}
+
+.mainTable {
+    text-align: center;
 }
